@@ -1,0 +1,222 @@
+%Peng Hongyong's Resume
+%Created: 6 Jan 2014
+%Last modified: 6 Jan 2014
+
+\documentclass[11pt,oneside]{article}
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{changepage}
+\RequirePackage{etoolbox}  
+
+\pagestyle{empty}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in,headheight=0in,headsep=0in,footskip=.3in}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+\def\SymbReg{\textsuperscript{\textregistered}}
+\def\SymTM{\textsuperscript{\texttrademark}}
+
+%Name and contact information
+\newcommand{\name}{Peng Hongyong}
+\newcommand{\birthplace}{Birth Place: Linyi, Shandong}
+\newcommand{\birthdate}{Birth Date: Dec, 1984}
+\newcommand{\phone}{Phone: (+86) 13621813784}
+\newcommand{\email}{Email: phy666@gmail.com}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% New commands and environments
+
+% This defines how the name looks
+\newcommand{\bigname}[1]{
+	\begin{center}\fontfamily{phv}\selectfont\Huge\scshape#1\end{center}
+}
+
+%
+\newcommand{\basicinfo}[1]{
+	\vspace{4pt}
+
+	{\fontfamily{phv}\selectfont\Large#1} \\
+	\vspace{-8pt} \rule{\textwidth}{1pt}
+}
+
+% A ressection is a main section (<H1>Section</H1>)
+\newenvironment{ressection}[1]{
+	\vspace{4pt}
+	{\fontfamily{phv}\selectfont\Large#1} \\
+	\vspace{-8pt} \rule{\textwidth}{1pt}
+	\vspace{1pt}
+	\begin{itemize}
+}{
+	\end{itemize}	
+}
+
+% A ressection is a main section (<H1>SectionNo</H1>)
+\newenvironment{ressectionno}[1]{
+	\vspace{4pt}
+	{\fontfamily{phv}\selectfont\Large#1} \\
+	\vspace{-8pt} \rule{\textwidth}{1pt}
+	\vspace{1pt}
+}{	
+}
+
+% A resitem is a simple list element in a ressection (first level)
+\newcommand{\resitem}[1]{
+	\vspace{-4pt}
+	\item \begin{flushleft} #1 \end{flushleft}
+}
+
+% A ressubitem is a simple list element in anything but a ressection (second level)
+\newcommand{\ressubitem}[1]{
+	\vspace{-1pt}
+	\item \begin{flushleft} \large{#1} \end{flushleft}
+}
+
+% A resbigitem is a complex list element for stuff like jobs and education:
+%  Arg 1: Name of company or university
+%  Arg 2: Location
+%  Arg 3: Title and/or date range
+\newcommand{\resbigitem}[4]{
+	\vspace{-5pt}
+	\textbf{#1}---\large#2 
+	\itshape\hfill\textit{\large#4}
+	\newline\vspace{3pt}{\Large{#3}}
+}
+
+% This is a list that comes with a resbigitem
+\newenvironment{ressubsec}[5]{
+	\resbigitem{#1}{#2}{#3}{#4}
+	\vspace{-1pt}
+	\newline\vspace{3pt}{#5}
+	\begin{itemize}
+}{
+	\end{itemize}
+}
+
+% This is a list that comes with a resbigitem
+\newenvironment{ressubsecno}[4]{
+        \newline
+	\resbigitem{#1}{#2}{#3}{#4}
+	\vspace{-1pt}
+	\newline
+}{
+}
+
+% This is a simple sublist
+\newenvironment{reslist}[1]{
+	\resitem{\textbf{#1}}
+	\vspace{-5pt}
+	\begin{itemize}
+}{
+	\end{itemize}
+}
+
+\begin{document}
+
+\fontfamily{ppl} \selectfont
+
+\bigname{\name}
+
+\begin{ressectionno}{Information}
+
+\hfill\begin{tabular}{ll}
+{\large{Phone:}} &  \large{(+86) 13621813784}\\
+{\large{Email:}} & \large{phy666@gmail.com} \\
+{\large{Birth Place: }} & \large {Linyi, Shandong} \\
+{\large{Birth Date:}} & \large {December, 1984}\\
+\end{tabular}
+
+\vspace{4 pt}
+\end{ressectionno}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{ressection}{Experience}
+     \item{
+	\begin{ressubsec}{Autodesk Inc.(M\&E Division)}{Shanghai}{Software Engineer For Smoke}{Nov 2010--Jun 2013}{\large{Autodesk Smoke\SymbReg} software is an all-in-one solution for professional video editing and effects. It is installed on Mac and Linux workstations. And as a member of media management team, my work is as follows,}
+		\ressubitem{Feature development\begin{enumerate}
+\item Archive Pre-Verification \\
+Before archiving clip data into package, use producer/consumer pattern to do integrity check for video frames.
+\item Backburner configuration UI\\
+Add new Backburner\cite{Backburner} configuration panel into Smoke.
+\item Workspace hierarchy \\
+Introduce workspace concept into Burn and command line tools.
+\item Burn\cite{Burn} related task support\\
+Client application UI modification, Burn task management, Scons build scripts modification, etc. 
+\item Partial PPFx effect support\\
+Import Timeline with composite mode and dissolve effect from Final Cut Pro\cite{Fcp} into Smoke.\end{enumerate}}
+		\ressubitem{Test development 
+		\begin{enumerate}
+		   \item Write command line tools, which are used for media import/export automation test.
+                    \item Write unit tests, do white box tests for media management framework.\end{enumerate}}
+		\ressubitem{Bug fixing 
+		\begin{enumerate} 
+		   \item Fix legacy bugs in media management team.
+                    \item CER bugs (Customer Error Report). 
+Read dump logs sent from customer, according to C++ call stacks, try to reproduce bugs, categorize and/or fix them.      
+                    \end{enumerate}}
+		\ressubitem{Daily maintenance 
+		   \begin{enumerate}
+		       \item Troubleshoot Smoke service related problems, such as Stone+Wire, Wiretap Gateway, Backburner, etc. 
+                        \item Daily builds sync, synchronize remote daily builds to Shanghai Team.
+                    \end{enumerate}
+                    }
+	\end{ressubsec}
+}
+    \item{
+	\begin{ressubsec}{ASUSTeK Inc.(IA Division)}{Hangzhou}{Software Engineer} {Jul 2007--Nov 2010}{As a software engineer, I develop small applications on Mobile and Tablet devices, based on Windows Mobile and Windows.}
+		\ressubitem{Internet Calendar \\Implement protocols Caldav(RFC 4791), Webdav(RFC 4918), based on HTTP. \\Implement basic parser for iCalendar format(RFC 5545)}
+		\ressubitem{Calculator \\Design and implement the calculator's whole backend.}
+		\ressubitem{EEE Net \\Database interface support. \\Implement File Monitor module.}
+		\ressubitem{ASUSZip for Windows Mobile \\It is a compression tool supporting 7z, zip, rar, I focus on bug fixing}
+	\end{ressubsec}
+	}
+
+\end{ressection}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{ressection}{Education}
+     \item{
+        \resbigitem{Jilin University(Computer Science)}{Jilin}{Bachelor}{ Sep 2003 -- Jun 2007}
+	}
+\end{ressection}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{ressection}{Skills}
+
+	\begin{reslist}{Computer Languages}
+
+		\ressubitem{Proficient in C/C++}
+
+		\ressubitem{Knowledge of Shell, Python}
+
+	\end{reslist}
+
+	\begin{reslist}{Tools and Systems}
+
+		\ressubitem{Familiar with GCC, GDB, EMACS on Linux and Mac}
+		\ressubitem{Familiar with Visual Studio on Windows}
+
+	\end{reslist}
+	
+	\begin{reslist}{Techniques}
+		\ressubitem{Familiar with TCP/IP, HTTP}
+		\ressubitem{Familiar with Unit Test and Automation Test}
+
+	\end{reslist}
+
+\end{ressection}
+
+
+\begin{thebibliography}{9}
+\bibitem{Backburner}Backburner\SymTM is the Autodeskk\SymbReg queue manager for
+background processing and distributed network processing. 
+\bibitem{Burn}
+Autodesk\SymbReg  Burn\SymbReg  software is a Linux\SymbReg -based network processing solution for Autodesk Creative Finishing tools. Use Burn to help render images in the background using low-cost PC workstations, freeing your online suite for more creative tasks.
+\bibitem{Fcp}
+Final Cut Pro is a non-linear video editing software developed by Macromedia Inc. and later Apple Inc.
+\end{thebibliography}
+
+\end{document}
